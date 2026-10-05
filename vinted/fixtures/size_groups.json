@@ -1,0 +1,152 @@
+{
+ "size_groups": [
+  {
+   "id": 4,
+   "caption_code": 10,
+   "caption": "Size",
+   "description": "Women's items",
+   "size_ids": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    90,
+    97,
+    102,
+    310,
+    311,
+    312,
+    1226,
+    1227,
+    1228,
+    1229,
+    1230
+   ],
+   "faq_entry_id": 506,
+   "sizes": [
+    {
+     "id": 1226,
+     "title": "XXXS / 30 / 2",
+     "is_default": 0,
+     "is_other": 0,
+     "order": 0
+    },
+    {
+     "id": 102,
+     "title": "XXS / 32 / 4",
+     "is_default": 0,
+     "is_other": 0,
+     "order": 2
+    },
+    {
+     "id": 2,
+     "title": "XS / 34 / 6",
+     "is_default": 0,
+     "is_other": 0,
+     "order": 4
+    },
+    {
+     "id": 3,
+     "title": "S / 36 / 8",
+     "is_default": 0,
+     "is_other": 0,
+     "order": 6
+    },
+    {
+     "id": 4,
+     "title": "M / 38 / 10",
+     "is_default": 1,
+     "is_other": 0,
+     "order": 8
+    },
+    {
+     "id": 5,
+     "title": "L / 40 / 12",
+     "is_default": 0,
+     "is_other": 0,
+     "order": 10
+    },
+    {
+     "id": 6,
+     "title": "XL / 42 / 14",
+     "is_default": 0,
+     "is_other": 0,
+     "order": 12
+    },
+    {
+     "id": 7,
+     "title": "XXL / 44 / 16",
+     "is_default": 0,
+     "is_other": 0,
+     "order": 14
+    },
+    {
+     "id": 310,
+     "title": "XXXL / 46 / 18",
+     "is_default": 0,
+     "is_other": 0,
+     "order": 16
+    },
+    {
+     "id": 311,
+     "title": "4XL / 48 / 20",
+     "is_default": 0,
+     "is_other": 0,
+     "order": 18
+    },
+    {
+     "id": 312,
+     "title": "5XL / 50 / 22",
+     "is_default": 0,
+     "is_other": 0,
+     "order": 20
+    },
+    {
+     "id": 1227,
+     "title": "6XL / 52 / 24",
+     "is_default": 0,
+     "is_other": 0,
+     "order": 22
+    },
+    {
+     "id": 1228,
+     "title": "7XL / 54 / 26",
+     "is_default": 0,
+     "is_other": 0,
+     "order": 24
+    },
+    {
+     "id": 1229,
+     "title": "8XL / 56 / 28",
+     "is_default": 0,
+     "is_other": 0,
+     "order": 27
+    },
+    {
+     "id": 1230,
+     "title": "9XL / 58 / 30",
+     "is_default": 0,
+     "is_other": 0,
+     "order": 29
+    },
+    {
+     "id": 90,
+     "title": "One size",
+     "is_default": 0,
+     "is_other": 0,
+     "order": 110
+    },
+    {
+     "id": 97,
+     "title": "Other",
+     "is_default": 0,
+     "is_other": 1,
+     "order": 210
+    }
+   ]
+  }
+ ],
+ "code": 0
+}

@@ -1,0 +1,33 @@
+{
+ "filter_code": "size",
+ "options": [
+  {
+   "id": "1904",
+   "options": [
+    {
+     "id": "WOMEN-LT",
+     "options": [
+      {
+       "id": "1226",
+       "items_count": 446,
+       "title": "XXXS / 30 / 2",
+       "type": "default"
+      },
+      {
+       "id": "102",
+       "items_count": 2736,
+       "title": "XXS / 32 / 4",
+       "type": "default"
+      }
+     ],
+     "title": "Women's items",
+     "type": "group"
+    }
+   ],
+   "title": "Women",
+   "type": "navigational"
+  }
+ ],
+ "total_count": null,
+ "total_count_max": 99
+}

@@ -1,0 +1,124 @@
+{
+ "results": [
+  {
+   "title": "levi's men",
+   "params": [
+    {
+     "entity_combination": [
+      "brand+parent_cat"
+     ],
+     "search_signals": [
+      "prefix_exact"
+     ],
+     "source": [
+      "taxonomy_data"
+     ],
+     "title": [
+      "levi's men"
+     ],
+     "total_score": [
+      "518"
+     ]
+    }
+   ],
+   "params_entries": {
+    "entity_combination": [
+     "brand+parent_cat"
+    ],
+    "search_signals": [
+     "prefix_exact"
+    ],
+    "source": [
+     "taxonomy_data"
+    ],
+    "title": [
+     "levi's men"
+    ],
+    "total_score": [
+     "518"
+    ]
+   },
+   "type": null
+  },
+  {
+   "title": "levi's women",
+   "params": [
+    {
+     "entity_combination": [
+      "brand+parent_cat"
+     ],
+     "search_signals": [
+      "prefix_exact"
+     ],
+     "source": [
+      "taxonomy_data"
+     ],
+     "title": [
+      "levi's women"
+     ],
+     "total_score": [
+      "515"
+     ]
+    }
+   ],
+   "params_entries": {
+    "entity_combination": [
+     "brand+parent_cat"
+    ],
+    "search_signals": [
+     "prefix_exact"
+    ],
+    "source": [
+     "taxonomy_data"
+    ],
+    "title": [
+     "levi's women"
+    ],
+    "total_score": [
+     "515"
+    ]
+   },
+   "type": null
+  },
+  {
+   "title": "levi's jeans women",
+   "params": [
+    {
+     "entity_combination": [
+      "brand+non_parent_cat"
+     ],
+     "search_signals": [
+      "prefix_exact"
+     ],
+     "source": [
+      "taxonomy_data"
+     ],
+     "title": [
+      "levi's jeans women"
+     ],
+     "total_score": [
+      "440"
+     ]
+    }
+   ],
+   "params_entries": {
+    "entity_combination": [
+     "brand+non_parent_cat"
+    ],
+    "search_signals": [
+     "prefix_exact"
+    ],
+    "source": [
+     "taxonomy_data"
+    ],
+    "title": [
+     "levi's jeans women"
+    ],
+    "total_score": [
+     "440"
+    ]
+   },
+   "type": null
+  }
+ ]
+}

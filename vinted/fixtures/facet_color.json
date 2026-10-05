@@ -1,0 +1,29 @@
+{
+ "filter_code": "color",
+ "options": [
+  {
+   "id": "1",
+   "items_count": 12352,
+   "prefix": {
+    "size": "medium",
+    "type": "image",
+    "url": "https://static-assets.vinted.com/ontologies/icons/attributes/colours/black.png"
+   },
+   "title": "Black",
+   "type": "default"
+  },
+  {
+   "id": "3",
+   "items_count": 7665,
+   "prefix": {
+    "size": "medium",
+    "type": "image",
+    "url": "https://static-assets.vinted.com/ontologies/icons/attributes/colours/grey.png"
+   },
+   "title": "Grey",
+   "type": "default"
+  }
+ ],
+ "total_count": null,
+ "total_count_max": 99
+}

@@ -1,0 +1,498 @@
+{
+ "items": [
+  {
+   "content_source": "search_promoted_items",
+   "favourite_count": 0,
+   "id": 10252963967,
+   "is_favourite": false,
+   "item_box": {
+    "accessibility_label": "501 premium quality w 27, Brand: Levi's, Condition: Very good, Size: EU 36, 24.90 €, 26.85 €",
+    "exposures": [],
+    "ff_exposures": [],
+    "first_line": "Levi's",
+    "item_id": 10252963967,
+    "second_line": "EU 36 · Very good"
+   },
+   "photo": {
+    "dominant_color": "#777D85",
+    "dominant_color_opaque": "#D6D8DA",
+    "extra": {},
+    "full_size_url": "https://images1.vinted.net/tc/05_01a8c_DRL37EJ7fU4JzfTt4hbPXV4d/5c9593cd.webp?s=8abf52d05e5a92d38ce0b5a2cc6f01bc49c04e4f",
+    "height": 800,
+    "high_resolution": {
+     "id": "05_01a8c_DRL37EJ7fU4JzfTt4hbPXV4d",
+     "orientation": null
+    },
+    "id": 1,
+    "image_no": 1,
+    "is_main": true,
+    "thumbnails": [
+     {
+      "height": 100,
+      "original_size": null,
+      "type": "thumb70x100",
+      "url": "https://images1.vinted.net/t/05_01a8c_DRL37EJ7fU4JzfTt4hbPXV4d/70x100/5c9593cd.webp?s=4be42ec6b7ffe7d4caf42794fce719ee634368e2",
+      "width": 70
+     },
+     {
+      "height": 210,
+      "original_size": null,
+      "type": "thumb150x210",
+      "url": "https://images1.vinted.net/t/05_01a8c_DRL37EJ7fU4JzfTt4hbPXV4d/150x210/5c9593cd.webp?s=c8207efe12af9d61f94d21a20f4452106c765af6",
+      "width": 150
+     },
+     {
+      "height": 430,
+      "original_size": null,
+      "type": "thumb310x430",
+      "url": "https://images1.vinted.net/t/05_01a8c_DRL37EJ7fU4JzfTt4hbPXV4d/310x430/5c9593cd.webp?s=dc09749bb387f0f97d798cc9d12a27ac4f4d1f9a",
+      "width": 310
+     },
+     {
+      "height": 428,
+      "original_size": true,
+      "type": "thumb428x624",
+      "url": "https://images1.vinted.net/t/05_01a8c_DRL37EJ7fU4JzfTt4hbPXV4d/f800/5c9593cd.webp?s=d5f426ece3ffd2fbf3a7c2ef1071c2f77702d1b6",
+      "width": 321
+     },
+     {
+      "height": 624,
+      "original_size": true,
+      "type": "thumb624x428",
+      "url": "https://images1.vinted.net/t/05_01a8c_DRL37EJ7fU4JzfTt4hbPXV4d/f800/5c9593cd.webp?s=d5f426ece3ffd2fbf3a7c2ef1071c2f77702d1b6",
+      "width": 468
+     },
+     {
+      "height": 364,
+      "original_size": true,
+      "type": "thumb364x428",
+      "url": "https://images1.vinted.net/t/05_01a8c_DRL37EJ7fU4JzfTt4hbPXV4d/f800/5c9593cd.webp?s=d5f426ece3ffd2fbf3a7c2ef1071c2f77702d1b6",
+      "width": 273
+     }
+    ],
+    "url": "https://images1.vinted.net/t/05_01a8c_DRL37EJ7fU4JzfTt4hbPXV4d/f800/5c9593cd.webp?s=d5f426ece3ffd2fbf3a7c2ef1071c2f77702d1b6",
+    "width": 600
+   },
+   "photos": [
+    {
+     "dominant_color": "#777D85",
+     "dominant_color_opaque": "#D6D8DA",
+     "extra": {},
+     "full_size_url": "https://images1.vinted.net/tc/05_01a8c_DRL37EJ7fU4JzfTt4hbPXV4d/5c9593cd.webp?s=8abf52d05e5a92d38ce0b5a2cc6f01bc49c04e4f",
+     "height": 800,
+     "high_resolution": {
+      "id": "05_01a8c_DRL37EJ7fU4JzfTt4hbPXV4d",
+      "orientation": null
+     },
+     "id": 1,
+     "image_no": 1,
+     "is_main": true,
+     "thumbnails": [
+      {
+       "height": 100,
+       "original_size": null,
+       "type": "thumb70x100",
+       "url": "https://images1.vinted.net/t/05_01a8c_DRL37EJ7fU4JzfTt4hbPXV4d/70x100/5c9593cd.webp?s=4be42ec6b7ffe7d4caf42794fce719ee634368e2",
+       "width": 70
+      },
+      {
+       "height": 210,
+       "original_size": null,
+       "type": "thumb150x210",
+       "url": "https://images1.vinted.net/t/05_01a8c_DRL37EJ7fU4JzfTt4hbPXV4d/150x210/5c9593cd.webp?s=c8207efe12af9d61f94d21a20f4452106c765af6",
+       "width": 150
+      },
+      {
+       "height": 430,
+       "original_size": null,
+       "type": "thumb310x430",
+       "url": "https://images1.vinted.net/t/05_01a8c_DRL37EJ7fU4JzfTt4hbPXV4d/310x430/5c9593cd.webp?s=dc09749bb387f0f97d798cc9d12a27ac4f4d1f9a",
+       "width": 310
+      },
+      {
+       "height": 428,
+       "original_size": true,
+       "type": "thumb428x624",
+       "url": "https://images1.vinted.net/t/05_01a8c_DRL37EJ7fU4JzfTt4hbPXV4d/f800/5c9593cd.webp?s=d5f426ece3ffd2fbf3a7c2ef1071c2f77702d1b6",
+       "width": 321
+      },
+      {
+       "height": 624,
+       "original_size": true,
+       "type": "thumb624x428",
+       "url": "https://images1.vinted.net/t/05_01a8c_DRL37EJ7fU4JzfTt4hbPXV4d/f800/5c9593cd.webp?s=d5f426ece3ffd2fbf3a7c2ef1071c2f77702d1b6",
+       "width": 468
+      },
+      {
+       "height": 364,
+       "original_size": true,
+       "type": "thumb364x428",
+       "url": "https://images1.vinted.net/t/05_01a8c_DRL37EJ7fU4JzfTt4hbPXV4d/f800/5c9593cd.webp?s=d5f426ece3ffd2fbf3a7c2ef1071c2f77702d1b6",
+       "width": 273
+      }
+     ],
+     "url": "https://images1.vinted.net/t/05_01a8c_DRL37EJ7fU4JzfTt4hbPXV4d/f800/5c9593cd.webp?s=d5f426ece3ffd2fbf3a7c2ef1071c2f77702d1b6",
+     "width": 600
+    }
+   ],
+   "price": {
+    "amount": "24.90",
+    "currency_code": "EUR"
+   },
+   "promoted": true,
+   "search_tracking_params": {
+    "score": 4.79983377456665
+   },
+   "service_fee": {
+    "amount": "1.95",
+    "currency_code": "EUR"
+   },
+   "show_1st_time_seller_discount": false,
+   "title": "501 premium quality w 27",
+   "total_item_price": {
+    "amount": "26.85",
+    "currency_code": "EUR"
+   },
+   "url": "/items/10252963967-501-premium-quality-w-27",
+   "user": {
+    "business": false,
+    "id": 3146217014,
+    "login": "moniquevintage78"
+   },
+   "view_count": 0
+  },
+  {
+   "content_source": "search_promoted_items",
+   "favourite_count": 2,
+   "id": 10252754521,
+   "is_favourite": false,
+   "item_box": {
+    "accessibility_label": "Magnifique jean's noir 724 High rise slim straight T.34 (W24-L32) Neuf avec étiquette Levi's, Brand: Levi's, Condition: New with tags, Size: EU 34, 39.90 €, 42.60 €",
+    "exposures": [],
+    "ff_exposures": [],
+    "first_line": "Levi's",
+    "item_id": 10252754521,
+    "second_line": "EU 34 · New with tags"
+   },
+   "photo": {
+    "dominant_color": "#232026",
+    "dominant_color_opaque": "#BDBCBE",
+    "extra": {},
+    "full_size_url": "https://images1.vinted.net/tc/02_017b5_ZkUHjwmdnPfdp8XCK9VHgeGo/f723fe62.webp?s=a3ee01925de7509edb900b433e74fc56fc949153",
+    "height": 800,
+    "high_resolution": {
+     "id": "02_017b5_ZkUHjwmdnPfdp8XCK9VHgeGo",
+     "orientation": null
+    },
+    "id": 1,
+    "image_no": 1,
+    "is_main": true,
+    "thumbnails": [
+     {
+      "height": 100,
+      "original_size": null,
+      "type": "thumb70x100",
+      "url": "https://images1.vinted.net/t/02_017b5_ZkUHjwmdnPfdp8XCK9VHgeGo/70x100/f723fe62.webp?s=b1cce009ac9b22f92e2dedd8930b8f68ab1362c1",
+      "width": 70
+     },
+     {
+      "height": 210,
+      "original_size": null,
+      "type": "thumb150x210",
+      "url": "https://images1.vinted.net/t/02_017b5_ZkUHjwmdnPfdp8XCK9VHgeGo/150x210/f723fe62.webp?s=7126ced7376d8f9f782cbfd8aae8c36af09d3764",
+      "width": 150
+     },
+     {
+      "height": 430,
+      "original_size": null,
+      "type": "thumb310x430",
+      "url": "https://images1.vinted.net/t/02_017b5_ZkUHjwmdnPfdp8XCK9VHgeGo/310x430/f723fe62.webp?s=3ed93ce3d44d78006004d90c8aaf0a7b8e93405d",
+      "width": 310
+     },
+     {
+      "height": 428,
+      "original_size": true,
+      "type": "thumb428x624",
+      "url": "https://images1.vinted.net/t/02_017b5_ZkUHjwmdnPfdp8XCK9VHgeGo/f800/f723fe62.webp?s=be7680217709dffb6f4d98c35d41e63e77b3fbe1",
+      "width": 320
+     },
+     {
+      "height": 624,
+      "original_size": true,
+      "type": "thumb624x428",
+      "url": "https://images1.vinted.net/t/02_017b5_ZkUHjwmdnPfdp8XCK9VHgeGo/f800/f723fe62.webp?s=be7680217709dffb6f4d98c35d41e63e77b3fbe1",
+      "width": 466
+     },
+     {
+      "height": 364,
+      "original_size": true,
+      "type": "thumb364x428",
+      "url": "https://images1.vinted.net/t/02_017b5_ZkUHjwmdnPfdp8XCK9VHgeGo/f800/f723fe62.webp?s=be7680217709dffb6f4d98c35d41e63e77b3fbe1",
+      "width": 272
+     }
+    ],
+    "url": "https://images1.vinted.net/t/02_017b5_ZkUHjwmdnPfdp8XCK9VHgeGo/f800/f723fe62.webp?s=be7680217709dffb6f4d98c35d41e63e77b3fbe1",
+    "width": 598
+   },
+   "photos": [
+    {
+     "dominant_color": "#232026",
+     "dominant_color_opaque": "#BDBCBE",
+     "extra": {},
+     "full_size_url": "https://images1.vinted.net/tc/02_017b5_ZkUHjwmdnPfdp8XCK9VHgeGo/f723fe62.webp?s=a3ee01925de7509edb900b433e74fc56fc949153",
+     "height": 800,
+     "high_resolution": {
+      "id": "02_017b5_ZkUHjwmdnPfdp8XCK9VHgeGo",
+      "orientation": null
+     },
+     "id": 1,
+     "image_no": 1,
+     "is_main": true,
+     "thumbnails": [
+      {
+       "height": 100,
+       "original_size": null,
+       "type": "thumb70x100",
+       "url": "https://images1.vinted.net/t/02_017b5_ZkUHjwmdnPfdp8XCK9VHgeGo/70x100/f723fe62.webp?s=b1cce009ac9b22f92e2dedd8930b8f68ab1362c1",
+       "width": 70
+      },
+      {
+       "height": 210,
+       "original_size": null,
+       "type": "thumb150x210",
+       "url": "https://images1.vinted.net/t/02_017b5_ZkUHjwmdnPfdp8XCK9VHgeGo/150x210/f723fe62.webp?s=7126ced7376d8f9f782cbfd8aae8c36af09d3764",
+       "width": 150
+      },
+      {
+       "height": 430,
+       "original_size": null,
+       "type": "thumb310x430",
+       "url": "https://images1.vinted.net/t/02_017b5_ZkUHjwmdnPfdp8XCK9VHgeGo/310x430/f723fe62.webp?s=3ed93ce3d44d78006004d90c8aaf0a7b8e93405d",
+       "width": 310
+      },
+      {
+       "height": 428,
+       "original_size": true,
+       "type": "thumb428x624",
+       "url": "https://images1.vinted.net/t/02_017b5_ZkUHjwmdnPfdp8XCK9VHgeGo/f800/f723fe62.webp?s=be7680217709dffb6f4d98c35d41e63e77b3fbe1",
+       "width": 320
+      },
+      {
+       "height": 624,
+       "original_size": true,
+       "type": "thumb624x428",
+       "url": "https://images1.vinted.net/t/02_017b5_ZkUHjwmdnPfdp8XCK9VHgeGo/f800/f723fe62.webp?s=be7680217709dffb6f4d98c35d41e63e77b3fbe1",
+       "width": 466
+      },
+      {
+       "height": 364,
+       "original_size": true,
+       "type": "thumb364x428",
+       "url": "https://images1.vinted.net/t/02_017b5_ZkUHjwmdnPfdp8XCK9VHgeGo/f800/f723fe62.webp?s=be7680217709dffb6f4d98c35d41e63e77b3fbe1",
+       "width": 272
+      }
+     ],
+     "url": "https://images1.vinted.net/t/02_017b5_ZkUHjwmdnPfdp8XCK9VHgeGo/f800/f723fe62.webp?s=be7680217709dffb6f4d98c35d41e63e77b3fbe1",
+     "width": 598
+    }
+   ],
+   "price": {
+    "amount": "39.90",
+    "currency_code": "EUR"
+   },
+   "promoted": true,
+   "search_tracking_params": {
+    "score": 4.7970290184021
+   },
+   "service_fee": {
+    "amount": "2.70",
+    "currency_code": "EUR"
+   },
+   "show_1st_time_seller_discount": false,
+   "title": "Magnifique jean's noir 724 High rise slim straight T.34 (W24-L32) Neuf avec étiquette Levi's",
+   "total_item_price": {
+    "amount": "42.60",
+    "currency_code": "EUR"
+   },
+   "url": "/items/10252754521-magnifique-jeans-noir-724-high-rise-slim-straight-t34-w24-l32-neuf-avec-etiquette-levis",
+   "user": {
+    "business": true,
+    "id": 250318570,
+    "login": "orelgin"
+   },
+   "view_count": 0
+  },
+  {
+   "content_source": "search_promoted_items",
+   "favourite_count": 0,
+   "id": 10252454062,
+   "is_favourite": false,
+   "item_box": {
+    "accessibility_label": "Magnifique jean Levi s ribcage bells flare neuf sans étiquette, Brand: Levi's, Condition: New without tags, Size: L, 68.00 €, 72.10 €",
+    "exposures": [],
+    "ff_exposures": [],
+    "first_line": "Levi's",
+    "item_id": 10252454062,
+    "second_line": "L · New without tags"
+   },
+   "photo": {
+    "dominant_color": "#323D55",
+    "dominant_color_opaque": "#C2C5CC",
+    "extra": {},
+    "full_size_url": "https://images1.vinted.net/tc/01_01e1b_5qsiUqHybw6CXuWWvjpgWvsS/f19e3c98.webp?s=bc0430bba9355d7afc0d096053477892b62102b4",
+    "height": 800,
+    "high_resolution": {
+     "id": "01_01e1b_5qsiUqHybw6CXuWWvjpgWvsS",
+     "orientation": null
+    },
+    "id": 1,
+    "image_no": 1,
+    "is_main": true,
+    "thumbnails": [
+     {
+      "height": 100,
+      "original_size": null,
+      "type": "thumb70x100",
+      "url": "https://images1.vinted.net/t/01_01e1b_5qsiUqHybw6CXuWWvjpgWvsS/70x100/f19e3c98.webp?s=730926de91a5b3fad997c935047b9a2f0fb4a4b3",
+      "width": 70
+     },
+     {
+      "height": 210,
+      "original_size": null,
+      "type": "thumb150x210",
+      "url": "https://images1.vinted.net/t/01_01e1b_5qsiUqHybw6CXuWWvjpgWvsS/150x210/f19e3c98.webp?s=f3d98b45d398dc2f2a85bba5eda0a0cd3c739762",
+      "width": 150
+     },
+     {
+      "height": 430,
+      "original_size": null,
+      "type": "thumb310x430",
+      "url": "https://images1.vinted.net/t/01_01e1b_5qsiUqHybw6CXuWWvjpgWvsS/310x430/f19e3c98.webp?s=000fdd24f49184057a3db5e7f8a966ad278ac373",
+      "width": 310
+     },
+     {
+      "height": 428,
+      "original_size": true,
+      "type": "thumb428x624",
+      "url": "https://images1.vinted.net/t/01_01e1b_5qsiUqHybw6CXuWWvjpgWvsS/f800/f19e3c98.webp?s=0a15102f4b1ff0522834cae771fd1b0e9127390b",
+      "width": 321
+     },
+     {
+      "height": 624,
+      "original_size": true,
+      "type": "thumb624x428",
+      "url": "https://images1.vinted.net/t/01_01e1b_5qsiUqHybw6CXuWWvjpgWvsS/f800/f19e3c98.webp?s=0a15102f4b1ff0522834cae771fd1b0e9127390b",
+      "width": 468
+     },
+     {
+      "height": 364,
+      "original_size": true,
+      "type": "thumb364x428",
+      "url": "https://images1.vinted.net/t/01_01e1b_5qsiUqHybw6CXuWWvjpgWvsS/f800/f19e3c98.webp?s=0a15102f4b1ff0522834cae771fd1b0e9127390b",
+      "width": 273
+     }
+    ],
+    "url": "https://images1.vinted.net/t/01_01e1b_5qsiUqHybw6CXuWWvjpgWvsS/f800/f19e3c98.webp?s=0a15102f4b1ff0522834cae771fd1b0e9127390b",
+    "width": 600
+   },
+   "photos": [
+    {
+     "dominant_color": "#323D55",
+     "dominant_color_opaque": "#C2C5CC",
+     "extra": {},
+     "full_size_url": "https://images1.vinted.net/tc/01_01e1b_5qsiUqHybw6CXuWWvjpgWvsS/f19e3c98.webp?s=bc0430bba9355d7afc0d096053477892b62102b4",
+     "height": 800,
+     "high_resolution": {
+      "id": "01_01e1b_5qsiUqHybw6CXuWWvjpgWvsS",
+      "orientation": null
+     },
+     "id": 1,
+     "image_no": 1,
+     "is_main": true,
+     "thumbnails": [
+      {
+       "height": 100,
+       "original_size": null,
+       "type": "thumb70x100",
+       "url": "https://images1.vinted.net/t/01_01e1b_5qsiUqHybw6CXuWWvjpgWvsS/70x100/f19e3c98.webp?s=730926de91a5b3fad997c935047b9a2f0fb4a4b3",
+       "width": 70
+      },
+      {
+       "height": 210,
+       "original_size": null,
+       "type": "thumb150x210",
+       "url": "https://images1.vinted.net/t/01_01e1b_5qsiUqHybw6CXuWWvjpgWvsS/150x210/f19e3c98.webp?s=f3d98b45d398dc2f2a85bba5eda0a0cd3c739762",
+       "width": 150
+      },
+      {
+       "height": 430,
+       "original_size": null,
+       "type": "thumb310x430",
+       "url": "https://images1.vinted.net/t/01_01e1b_5qsiUqHybw6CXuWWvjpgWvsS/310x430/f19e3c98.webp?s=000fdd24f49184057a3db5e7f8a966ad278ac373",
+       "width": 310
+      },
+      {
+       "height": 428,
+       "original_size": true,
+       "type": "thumb428x624",
+       "url": "https://images1.vinted.net/t/01_01e1b_5qsiUqHybw6CXuWWvjpgWvsS/f800/f19e3c98.webp?s=0a15102f4b1ff0522834cae771fd1b0e9127390b",
+       "width": 321
+      },
+      {
+       "height": 624,
+       "original_size": true,
+       "type": "thumb624x428",
+       "url": "https://images1.vinted.net/t/01_01e1b_5qsiUqHybw6CXuWWvjpgWvsS/f800/f19e3c98.webp?s=0a15102f4b1ff0522834cae771fd1b0e9127390b",
+       "width": 468
+      },
+      {
+       "height": 364,
+       "original_size": true,
+       "type": "thumb364x428",
+       "url": "https://images1.vinted.net/t/01_01e1b_5qsiUqHybw6CXuWWvjpgWvsS/f800/f19e3c98.webp?s=0a15102f4b1ff0522834cae771fd1b0e9127390b",
+       "width": 273
+      }
+     ],
+     "url": "https://images1.vinted.net/t/01_01e1b_5qsiUqHybw6CXuWWvjpgWvsS/f800/f19e3c98.webp?s=0a15102f4b1ff0522834cae771fd1b0e9127390b",
+     "width": 600
+    }
+   ],
+   "price": {
+    "amount": "68.00",
+    "currency_code": "EUR"
+   },
+   "promoted": true,
+   "search_tracking_params": {
+    "score": 4.792891502380371
+   },
+   "service_fee": {
+    "amount": "4.10",
+    "currency_code": "EUR"
+   },
+   "show_1st_time_seller_discount": false,
+   "title": "Magnifique jean Levi s ribcage bells flare neuf sans étiquette",
+   "total_item_price": {
+    "amount": "72.10",
+    "currency_code": "EUR"
+   },
+   "url": "/items/10252454062-magnifique-jean-levi-s-ribcage-bells-flare-neuf-sans-etiquette",
+   "user": {
+    "business": false,
+    "id": 15117867,
+    "login": "sand573"
+   },
+   "view_count": 0
+  }
+ ],
+ "pagination": {
+  "current_page": 1,
+  "per_page": 20,
+  "time": 1791194218,
+  "total_entries": 960,
+  "total_pages": 48
+ },
+ "search_tracking_params": {
+  "search_correlation_id": "470e4834-12bc-40de-988b-0c1a9b3999c1",
+  "search_session_id": "ee2745fa-0ee2-4dd2-bb6c-42640ac0fa3a"
+ }
+}

@@ -1,0 +1,99 @@
+{
+ "original_asking_amount": {
+  "amount": "24.9",
+  "currency_code": "EUR"
+ },
+ "seller_original_asking_amount": {
+  "amount": "24.9",
+  "currency_code": "EUR"
+ },
+ "services": {
+  "buyer_protection": {
+   "discount": {
+    "amount": "0",
+    "currency_code": "EUR"
+   },
+   "discount_percentage": 0,
+   "final_price": {
+    "amount": "1.95",
+    "currency_code": "EUR"
+   },
+   "lowest_price_30_days": {
+    "amount": "1.95",
+    "currency_code": "EUR"
+   },
+   "original_price": {
+    "amount": "1.95",
+    "currency_code": "EUR"
+   },
+   "pricing_rule": {
+    "fixed_part": {
+     "amount": "0.7",
+     "currency_code": "EUR"
+    },
+    "offer_price_percentage": 5
+   }
+  },
+  "electronics_verification": null,
+  "electronics_verification_warranty": null,
+  "item_verification": null,
+  "note": null,
+  "pickup_only": false,
+  "shipping": {
+   "discount": {
+    "amount": "0",
+    "currency_code": "EUR"
+   },
+   "discount_percentage": 0,
+   "discount_rule": {
+    "additional_info": {
+     "mobile_note_key": "",
+     "show_price_range_rule_note": false,
+     "web_note_key": ""
+    },
+    "end_date": "2035-11-01T00:00:00Z",
+    "landing_page_uri": "/available_discounts?id[]=0016a041-f546-4456-a1c8-b3fa32f66480",
+    "percentage": 0,
+    "pickup_type": "point",
+    "start_date": "2025-10-30T16:00:00Z"
+   },
+   "exchange_rate": "1",
+   "final_price": {
+    "amount": "4.45",
+    "currency_code": "EUR"
+   },
+   "lowest_price_30_days": {
+    "amount": "4.45",
+    "currency_code": "EUR"
+   },
+   "original_price": {
+    "amount": "4.45",
+    "currency_code": "EUR"
+   },
+   "pickup_only": false,
+   "pricing_rule": {
+    "additional_info": {
+     "max_discount_percentage": 0,
+     "multiple_shipping_options_available": true,
+     "pickup_type": "point"
+    }
+   },
+   "seller_discount": {
+    "amount": "0",
+    "currency_code": "EUR"
+   },
+   "seller_final_price": {
+    "amount": "4.45",
+    "currency_code": "EUR"
+   },
+   "seller_original_price": {
+    "amount": "4.45",
+    "currency_code": "EUR"
+   }
+  }
+ },
+ "total_amount": {
+  "amount": "26.85",
+  "currency_code": "EUR"
+ }
+}

@@ -1,0 +1,10 @@
+services:
+  vinted-scraper:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      # Optional — Vinted did not block us in testing, so leave this unset.
+      # - VINTED_PROXY=http://user:pass@host:port

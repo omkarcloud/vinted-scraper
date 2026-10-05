@@ -1,0 +1,60 @@
+{
+ "brands": [
+  {
+   "id": 10,
+   "title": "Levi's",
+   "slug": "levis",
+   "favourite_count": 4618790,
+   "pretty_favourite_count": "4.6M",
+   "item_count": 13909280,
+   "pretty_item_count": "13.9M",
+   "is_visible_in_listings": true,
+   "requires_authenticity_check": true,
+   "is_luxury": true,
+   "is_hvf": true,
+   "path": "/brand/10-levis",
+   "url": "https://www.vinted.fr/brand/10-levis",
+   "is_favourite": false
+  },
+  {
+   "id": 6413639,
+   "title": "Levi Strauss & Co.",
+   "slug": "levi-strauss-co",
+   "favourite_count": 78662,
+   "pretty_favourite_count": "78.7K",
+   "item_count": 778673,
+   "pretty_item_count": "778.7K",
+   "is_visible_in_listings": true,
+   "requires_authenticity_check": false,
+   "is_luxury": false,
+   "is_hvf": false,
+   "path": "/brand/6413639-levi-strauss-co",
+   "url": "https://www.vinted.fr/brand/6413639-levi-strauss-co",
+   "is_favourite": false
+  },
+  {
+   "id": 13809,
+   "title": "Sublevel",
+   "slug": "sublevel",
+   "favourite_count": 4180,
+   "pretty_favourite_count": "4.2K",
+   "item_count": 104582,
+   "pretty_item_count": "104.6K",
+   "is_visible_in_listings": true,
+   "requires_authenticity_check": false,
+   "is_luxury": false,
+   "is_hvf": false,
+   "path": "/brand/13809-sublevel",
+   "url": "https://www.vinted.fr/brand/13809-sublevel",
+   "is_favourite": false
+  }
+ ],
+ "pagination": {
+  "current_page": 1,
+  "total_pages": 1,
+  "total_entries": 10,
+  "per_page": 30,
+  "time": 1791194233
+ },
+ "code": 0
+}

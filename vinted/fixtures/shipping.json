@@ -1,0 +1,13 @@
+{
+ "shipping_details": {
+  "pickup_only": false,
+  "multiple_shipping_options_available": true,
+  "free_shipping": false,
+  "discount": null,
+  "price": {
+   "amount": 2.59,
+   "currency_code": "EUR"
+  }
+ },
+ "code": 0
+}

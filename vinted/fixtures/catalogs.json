@@ -1,0 +1,311 @@
+{
+ "catalogs": [
+  {
+   "id": 5,
+   "title": "Men",
+   "restricted_to_status_id": null,
+   "badge": null,
+   "photo": {
+    "url": "https://static-assets.vinted.com/ontologies/icons/categories/MENS.png",
+    "thumbnails": []
+   },
+   "path": "",
+   "catalogs": [
+    {
+     "id": 2050,
+     "title": "Clothing",
+     "restricted_to_status_id": null,
+     "badge": null,
+     "photo": {
+      "url": "https://static-assets.vinted.com/ontologies/icons/categories/MEN_CLOTHING.png",
+      "thumbnails": []
+     },
+     "path": "Men",
+     "catalogs": [
+      {
+       "id": 257,
+       "title": "Jeans",
+       "restricted_to_status_id": null,
+       "badge": null,
+       "photo": {},
+       "path": "Men > Clothing",
+       "catalogs": [
+        {
+         "id": 1816,
+         "title": "Ripped jeans",
+         "restricted_to_status_id": null,
+         "badge": null,
+         "photo": {},
+         "path": "Men > Clothing > Jeans",
+         "catalogs": [],
+         "full_title": "Ripped jeans (Men)"
+        },
+        {
+         "id": 1817,
+         "title": "Skinny jeans",
+         "restricted_to_status_id": null,
+         "badge": null,
+         "photo": {},
+         "path": "Men > Clothing > Jeans",
+         "catalogs": [],
+         "full_title": "Skinny jeans (Men)"
+        },
+        {
+         "id": 1818,
+         "title": "Slim fit jeans",
+         "restricted_to_status_id": null,
+         "badge": null,
+         "photo": {},
+         "path": "Men > Clothing > Jeans",
+         "catalogs": [],
+         "full_title": "Slim fit jeans (Men)"
+        },
+        {
+         "id": 1819,
+         "title": "Straight fit jeans",
+         "restricted_to_status_id": null,
+         "badge": null,
+         "photo": {},
+         "path": "Men > Clothing > Jeans",
+         "catalogs": [],
+         "full_title": "Straight fit jeans (Men)"
+        }
+       ]
+      },
+      {
+       "id": 1206,
+       "title": "Outerwear",
+       "restricted_to_status_id": null,
+       "badge": null,
+       "photo": {},
+       "path": "Men > Clothing",
+       "catalogs": [
+        {
+         "id": 2051,
+         "title": "Coats",
+         "restricted_to_status_id": null,
+         "badge": null,
+         "photo": {},
+         "path": "Men > Clothing > Outerwear",
+         "catalogs": [
+          {
+           "id": 1225,
+           "title": "Duffle coats",
+           "restricted_to_status_id": null,
+           "badge": null,
+           "photo": {},
+           "path": "Men > Clothing > Outerwear > Coats",
+           "catalogs": [],
+           "full_title": "Duffle coats (Men)"
+          },
+          {
+           "id": 2533,
+           "title": "Overcoats & long coats",
+           "restricted_to_status_id": null,
+           "badge": null,
+           "photo": {},
+           "path": "Men > Clothing > Outerwear > Coats",
+           "catalogs": [],
+           "full_title": "Overcoats & long coats (Men)"
+          },
+          {
+           "id": 1227,
+           "title": "Parkas",
+           "restricted_to_status_id": null,
+           "badge": null,
+           "photo": {},
+           "path": "Men > Clothing > Outerwear > Coats",
+           "catalogs": [],
+           "full_title": "Parkas (Men)"
+          },
+          {
+           "id": 1861,
+           "title": "Peacoats",
+           "restricted_to_status_id": null,
+           "badge": null,
+           "photo": {},
+           "path": "Men > Clothing > Outerwear > Coats",
+           "catalogs": [],
+           "full_title": "Peacoats (Men)"
+          },
+          {
+           "id": 1859,
+           "title": "Raincoats",
+           "restricted_to_status_id": null,
+           "badge": null,
+           "photo": {},
+           "path": "Men > Clothing > Outerwear > Coats",
+           "catalogs": [],
+           "full_title": "Raincoats (Men)"
+          },
+          {
+           "id": 1230,
+           "title": "Trench coats",
+           "restricted_to_status_id": null,
+           "badge": null,
+           "photo": {},
+           "path": "Men > Clothing > Outerwear > Coats",
+           "catalogs": [],
+           "full_title": "Trench coats (Men)"
+          }
+         ]
+        },
+        {
+         "id": 2553,
+         "title": "Gilets & body warmers",
+         "restricted_to_status_id": null,
+         "badge": null,
+         "photo": {},
+         "path": "Men > Clothing > Outerwear",
+         "catalogs": [],
+         "full_title": "Gilets & body warmers (Men)"
+        },
+        {
+         "id": 2052,
+         "title": "Jackets",
+         "restricted_to_status_id": null,
+         "badge": null,
+         "photo": {},
+         "path": "Men > Clothing > Outerwear",
+         "catalogs": [
+          {
+           "id": 2534,
+           "title": "Biker & racer jackets",
+           "restricted_to_status_id": null,
+           "badge": null,
+           "photo": {},
+           "path": "Men > Clothing > Outerwear > Jackets",
+           "catalogs": [],
+           "full_title": "Biker & racer jackets (Men)"
+          },
+          {
+           "id": 1223,
+           "title": "Bomber jackets",
+           "restricted_to_status_id": null,
+           "badge": null,
+           "photo": {},
+           "path": "Men > Clothing > Outerwear > Jackets",
+           "catalogs": [],
+           "full_title": "Bomber jackets (Men)"
+          },
+          {
+           "id": 1224,
+           "title": "Denim jackets",
+           "restricted_to_status_id": null,
+           "badge": null,
+           "photo": {},
+           "path": "Men > Clothing > Outerwear > Jackets",
+           "catalogs": [],
+           "full_title": "Denim jackets (Men)"
+          },
+          {
+           "id": 2535,
+           "title": "Field & utility jackets",
+           "restricted_to_status_id": null,
+           "badge": null,
+           "photo": {},
+           "path": "Men > Clothing > Outerwear > Jackets",
+           "catalogs": [],
+           "full_title": "Field & utility jackets (Men)"
+          },
+          {
+           "id": 1858,
+           "title": "Fleece jackets",
+           "restricted_to_status_id": null,
+           "badge": null,
+           "photo": {},
+           "path": "Men > Clothing > Outerwear > Jackets",
+           "catalogs": [],
+           "full_title": "Fleece jackets (Men)"
+          },
+          {
+           "id": 1226,
+           "title": "Harrington jackets",
+           "restricted_to_status_id": null,
+           "badge": null,
+           "photo": {},
+           "path": "Men > Clothing > Outerwear > Jackets",
+           "catalogs": [],
+           "full_title": "Harrington jackets (Men)"
+          },
+          {
+           "id": 2536,
+           "title": "Puffer jackets",
+           "restricted_to_status_id": null,
+           "badge": null,
+           "photo": {},
+           "path": "Men > Clothing > Outerwear > Jackets",
+           "catalogs": [],
+           "full_title": "Puffer jackets (Men)"
+          },
+          {
+           "id": 2537,
+           "title": "Quilted jackets",
+           "restricted_to_status_id": null,
+           "badge": null,
+           "photo": {},
+           "path": "Men > Clothing > Outerwear > Jackets",
+           "catalogs": [],
+           "full_title": "Quilted jackets (Men)"
+          },
+          {
+           "id": 2538,
+           "title": "Shackets",
+           "restricted_to_status_id": null,
+           "badge": null,
+           "photo": {},
+           "path": "Men > Clothing > Outerwear > Jackets",
+           "catalogs": [],
+           "full_title": "Shackets (Men)"
+          },
+          {
+           "id": 2539,
+           "title": "Ski & snowboard jackets",
+           "restricted_to_status_id": null,
+           "badge": null,
+           "photo": {},
+           "path": "Men > Clothing > Outerwear > Jackets",
+           "catalogs": [],
+           "full_title": "Ski & snowboard jackets (Men)"
+          },
+          {
+           "id": 2550,
+           "title": "Varsity jackets",
+           "restricted_to_status_id": null,
+           "badge": null,
+           "photo": {},
+           "path": "Men > Clothing > Outerwear > Jackets",
+           "catalogs": [],
+           "full_title": "Varsity jackets (Men)"
+          },
+          {
+           "id": 2551,
+           "title": "Windbreakers",
+           "restricted_to_status_id": null,
+           "badge": null,
+           "photo": {},
+           "path": "Men > Clothing > Outerwear > Jackets",
+           "catalogs": [],
+           "full_title": "Windbreakers (Men)"
+          }
+         ]
+        },
+        {
+         "id": 2552,
+         "title": "Ponchos",
+         "restricted_to_status_id": null,
+         "badge": null,
+         "photo": {},
+         "path": "Men > Clothing > Outerwear",
+         "catalogs": [],
+         "full_title": "Ponchos (Men)"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "code": 0
+}

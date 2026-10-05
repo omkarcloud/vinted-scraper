@@ -1,0 +1,164 @@
+{
+ "filters": [
+  {
+   "code": "brand",
+   "display_type": "list_search",
+   "id": "8",
+   "is_lazy": true,
+   "is_selection_highlighted": true,
+   "options": [],
+   "position": 1,
+   "search_translations": {
+    "no_results": {
+     "body": "Check your spelling or try searching for a different brand.",
+     "title": "Brand not found"
+    },
+    "placeholder": "Search for brands"
+   },
+   "selection_type": "multi",
+   "title": "Brand",
+   "total_count_max": 99,
+   "translations": {
+    "no_results": {
+     "body": "Try adjusting other filters to see more results",
+     "title": "No items available with this filter"
+    }
+   }
+  },
+  {
+   "code": "brand_collection",
+   "display_type": "list_search",
+   "id": "1358",
+   "is_lazy": true,
+   "is_selection_highlighted": true,
+   "options": [],
+   "position": 2,
+   "search_translations": {
+    "no_results": {
+     "body": "Check the spelling or try searching for a different model.",
+     "title": "We couldn't find the model you're looking for"
+    },
+    "placeholder": "Search for models"
+   },
+   "selection_type": "multi",
+   "title": "Model",
+   "total_count_max": 99,
+   "translations": {
+    "no_results": {
+     "body": "Try adjusting other filters to see more results",
+     "title": "No items available with this filter"
+    }
+   }
+  },
+  {
+   "code": "status",
+   "display_type": "list",
+   "id": "3",
+   "is_lazy": true,
+   "options": [],
+   "position": 3,
+   "selection_type": "multi",
+   "title": "Condition",
+   "total_count_max": 99,
+   "translations": {
+    "no_results": {
+     "body": "Try adjusting other filters to see more results",
+     "title": "No items available with this filter"
+    }
+   }
+  },
+  {
+   "cell_type": "circle",
+   "code": "color",
+   "display_type": "grid",
+   "grid_columns": 3,
+   "id": "6",
+   "is_lazy": true,
+   "is_selection_highlighted": false,
+   "options": [],
+   "position": 4,
+   "selection_type": "multi",
+   "title": "Colour",
+   "total_count_max": 99,
+   "translations": {
+    "no_results": {
+     "body": "Try adjusting other filters to see more results",
+     "title": "No items available with this filter"
+    }
+   }
+  },
+  {
+   "code": "price",
+   "display_type": "hybrid_price",
+   "id": "9",
+   "options": [],
+   "position": 5,
+   "selection_type": "default",
+   "title": "Price"
+  },
+  {
+   "code": "internal_memory_capacity",
+   "display_type": "list",
+   "id": "97",
+   "is_lazy": true,
+   "is_new_filter": false,
+   "is_selection_highlighted": true,
+   "options": [],
+   "position": 6,
+   "selection_type": "multi",
+   "title": "Storage capacity",
+   "total_count_max": 99,
+   "translations": {
+    "no_results": {
+     "body": "Try adjusting other filters to see more results",
+     "title": "No items available with this filter"
+    }
+   }
+  },
+  {
+   "code": "sim_lock",
+   "display_type": "list",
+   "id": "98",
+   "is_lazy": true,
+   "is_new_filter": false,
+   "is_selection_highlighted": true,
+   "options": [],
+   "position": 7,
+   "selection_type": "multi",
+   "title": "SIM lock",
+   "total_count_max": 99,
+   "translations": {
+    "no_results": {
+     "body": "Try adjusting other filters to see more results",
+     "title": "No items available with this filter"
+    }
+   }
+  }
+ ],
+ "selected_filters": [
+  {
+   "code": "brand",
+   "ids": []
+  },
+  {
+   "code": "brand_collection",
+   "ids": []
+  },
+  {
+   "code": "status",
+   "ids": []
+  },
+  {
+   "code": "color",
+   "ids": []
+  },
+  {
+   "code": "internal_memory_capacity",
+   "ids": []
+  },
+  {
+   "code": "sim_lock",
+   "ids": []
+  }
+ ]
+}

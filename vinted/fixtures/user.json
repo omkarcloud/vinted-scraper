@@ -1,0 +1,172 @@
+{
+ "user": {
+  "id": 3146217014,
+  "anon_id": "62701a66-1e6d-4ed2-be63-624f25f9ffdf",
+  "login": "moniquevintage78",
+  "country_id": 18,
+  "updated_on": 1776758796,
+  "about": "",
+  "birthday": null,
+  "profile_url": "https://www.vinted.fr/member/3146217014-moniquevintage78",
+  "share_profile_url": "https://www.vinted.fr/member/3146217014-moniquevintage78",
+  "path": "/member/3146217014-moniquevintage78",
+  "allow_direct_messaging": true,
+  "avg_response_time": null,
+  "is_bpf_price_prominence_applied": false,
+  "contacts_permission": null,
+  "contacts": null,
+  "moderator": false,
+  "is_catalog_moderator": false,
+  "is_catalog_role_marketing_photos": false,
+  "hide_feedback": false,
+  "real_name": null,
+  "email": null,
+  "verification": {
+   "email": {
+    "valid": true,
+    "available": true
+   },
+   "facebook": {
+    "valid": false,
+    "verified_at": null,
+    "available": true
+   },
+   "google": {
+    "valid": true,
+    "verified_at": "2026-04-02T14:50:21+02:00",
+    "available": true
+   }
+  },
+  "business_account_id": null,
+  "business_account": null,
+  "business": false,
+  "account_ban_date": null,
+  "action_restriction": null,
+  "is_account_banned": false,
+  "msg_template_count": 0,
+  "last_loged_on_ts": "2026-10-05T10:59:04+02:00",
+  "last_loged_on": "today 10:59",
+  "is_online": false,
+  "can_view_profile": true,
+  "is_deleted": false,
+  "iso_locale_code": "it-IT",
+  "facebook_user_id": null,
+  "hates_you": false,
+  "is_hated": false,
+  "feedback_count": 230,
+  "feedback_reputation": 1.0,
+  "can_bundle": true,
+  "photo": {
+   "id": 304347637,
+   "width": 750,
+   "height": 500,
+   "temp_uuid": null,
+   "url": "https://images1.vinted.net/t/06_00113_BvVHXaLxCMv9PCMRzNU28Sse/f800/1775134450.jpeg?s=f4030c638fac0f763c66dde1445183c15a9e54a2",
+   "dominant_color": "#31abc2",
+   "dominant_color_opaque": "#C1E6ED",
+   "thumbnails": [
+    {
+     "type": "thumb310",
+     "url": "https://images1.vinted.net/t/06_00113_BvVHXaLxCMv9PCMRzNU28Sse/310x310/1775134450.jpeg?s=e9f2f09981e5b513e8c0146db0b1e8c96e9c1c60",
+     "width": 310,
+     "height": 310,
+     "original_size": null
+    },
+    {
+     "type": "thumb150",
+     "url": "https://images1.vinted.net/t/06_00113_BvVHXaLxCMv9PCMRzNU28Sse/150x150/1775134450.jpeg?s=f66c3f09279c355992f52cf30833afc15f6bd3ff",
+     "width": 150,
+     "height": 150,
+     "original_size": null
+    },
+    {
+     "type": "thumb100",
+     "url": "https://images1.vinted.net/t/06_00113_BvVHXaLxCMv9PCMRzNU28Sse/100x100/1775134450.jpeg?s=6516a21780fbf5eff5d1661eb311d0d5273200ce",
+     "width": 100,
+     "height": 100,
+     "original_size": null
+    },
+    {
+     "type": "thumb50",
+     "url": "https://images1.vinted.net/t/06_00113_BvVHXaLxCMv9PCMRzNU28Sse/50x50/1775134450.jpeg?s=1bc51572e8e855f4d1161f094b45c5bbc6ab8dd2",
+     "width": 50,
+     "height": 50,
+     "original_size": null
+    },
+    {
+     "type": "thumb20",
+     "url": "https://images1.vinted.net/t/06_00113_BvVHXaLxCMv9PCMRzNU28Sse/20x20/1775134450.jpeg?s=daaac486624f7b52999bbc691abb737f00bf9830",
+     "width": 20,
+     "height": 20,
+     "original_size": null
+    }
+   ],
+   "is_suspicious": false,
+   "orientation": null,
+   "high_resolution": {
+    "id": "06_00113_BvVHXaLxCMv9PCMRzNU28Sse",
+    "timestamp": 1775134450,
+    "orientation": null
+   },
+   "full_size_url": "https://images1.vinted.net/tc/06_00113_BvVHXaLxCMv9PCMRzNU28Sse/1775134450.jpeg?s=610c0ba71fde6cafcebd77449ee519dca7458f56",
+   "is_hidden": false,
+   "extra": {}
+  },
+  "bundle_discount": {
+   "id": 87903637,
+   "user_id": 3146217014,
+   "enabled": false,
+   "minimal_item_count": 3,
+   "fraction": "0.1",
+   "discounts": [
+    {
+     "minimal_item_count": 2,
+     "fraction": "0.0"
+    },
+    {
+     "minimal_item_count": 3,
+     "fraction": "0.1"
+    },
+    {
+     "minimal_item_count": 5,
+     "fraction": "0.1"
+    }
+   ]
+  },
+  "item_count": 33,
+  "total_items_count": 306,
+  "followers_count": 60,
+  "following_count": 0,
+  "following_brands_count": 0,
+  "account_status": 0,
+  "positive_feedback_count": 230,
+  "neutral_feedback_count": 0,
+  "negative_feedback_count": 0,
+  "is_on_holiday": false,
+  "expose_location": false,
+  "city": "",
+  "city_id": null,
+  "country_code": "IT",
+  "is_publish_photos_agreed": true,
+  "third_party_tracking": true,
+  "locale": "it-fr",
+  "fundraiser": {
+   "id": null,
+   "active": false,
+   "percentage": 0,
+   "currency": "EUR",
+   "feature_disabled": true
+  },
+  "location_description": null,
+  "localization": "none",
+  "is_favourite": false,
+  "given_item_count": 273,
+  "taken_item_count": 1,
+  "default_address": null,
+  "country_title_local": "Italy",
+  "country_iso_code": "IT",
+  "country_title": "Italy",
+  "currency": "EUR"
+ },
+ "code": 0
+}
