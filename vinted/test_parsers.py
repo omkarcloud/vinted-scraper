@@ -1,8 +1,8 @@
 """Offline tests: ref parsing, the request schemas, the RSC flight reader
 and the normalizers against raw vinted.fr responses captured 2026-10-05
-(vinted/fixtures/). The two item pages are the real pages' plugins and
-ld+json re-wrapped in a minimal flight payload (the originals are 2 MB of
-translations).
+(vinted/fixtures/; the book page 2026-11-17). The item pages are the real
+pages' plugins and ld+json re-wrapped in a minimal flight payload (the
+originals are 2 MB of translations).
 
     python -m pytest vinted/test_parsers.py -q
 """
@@ -174,6 +174,7 @@ def test_item_details():
     assert seller["id"] == "3146217014" and seller["username"] == "moniquevintage78"
     assert seller["rating"] == 5.0 and seller["feedback_count"] == 230
     assert seller["badges"] == ["active_lister", "speedy_shipping"]
+    assert item["book"] is None
 
 
 def test_item_details_sold():
@@ -182,6 +183,38 @@ def test_item_details_sold():
     assert item["availability"] == "sold" and item["availability_label"] == "Sold"
     assert item["can_buy"] is None and item["title"] == "Vintage pelle"
     assert item["materials"] == ["Leather"] and item["pricing"]["amount"] is None
+
+
+def test_item_details_book():
+    html = page("item_page_book")
+    item = P.item_details(flight.plugins(flight.flight_rows(html)), flight.ld_json(html), "fr", "10849386330")
+    _no_camel_or_url_keys(item)
+    assert item["title"] == "Roman Kinra Girls tome 17" and item["condition"] == "Very good"
+    assert item["book"] == {"isbn": "9782809654851", "title": "Kinra Girls - Les garçons à la rescousse - tome 17",
+                            "author": "Moka", "language": "French"}
+    # still listed with the category attributes too (where callers read them before `book` existed)
+    assert [a["code"] for a in item["other_attributes"]] == ["language_book", "author", "book_title", "isbn_nav"]
+    assert {"code": "isbn_nav", "name": "ISBN", "value": "9782809654851"} in item["other_attributes"]
+    # a book has no brand: its breadcrumbs carry Vinted's placeholder brand id 1
+    assert item["brand"] is None
+    assert item["category"]["path"] == ["Books & Media", "Books", "Kids & young adults", "Kids"]
+
+
+def test_item_details_book_fields_are_optional():
+    def attributes(*pairs):
+        return {"attributes": {"attributes": [{"code": code, "data": {"title": code, "value": value}}
+                                              for code, value in pairs]}}
+    # Vinted found no publishing info for the ISBN: no title, no author
+    item = P.item_details(attributes(("isbn_nav", " 0521773393 "), ("language_book", "English")), None, "gb", "1")
+    assert item["book"] == {"isbn": "0521773393", "title": None, "author": None, "language": "English"}
+    # not a book
+    assert P.item_details(attributes(("color", "Blue")), None, "gb", "1")["book"] is None
+    assert P.item_details({}, None, "gb", "1")["book"] is None
+
+
+def test_placeholder_brand_is_no_brand():
+    assert P.item_details({"breadcrumbs": {"brand_id": "1"}}, None, "gb", "1")["brand"] is None
+    assert P.item_details({"breadcrumbs": {"brand_id": 53}}, None, "gb", "1")["brand"]["id"] == "53"
 
 
 def test_item_details_never_crashes():

@@ -421,6 +421,14 @@ def item_cards(rows, country, seller_override=None):
 
 # attribute codes lifted to top-level fields; the rest go to other_attributes
 _LIFTED = {"brand", "size", "size_familiar", "status", "color", "material", "upload_date"}
+# `book` field -> the attribute code a Books listing carries it under. The ISBN
+# is the 10 or 13 characters the seller entered (a string: it can start with 0);
+# Vinted fills title and author from it and omits them when it finds none.
+# The four stay in other_attributes as well (callers already read them there).
+_BOOK_CODES = {"isbn": "isbn_nav", "title": "book_title", "author": "author", "language": "language_book"}
+# Vinted's "no brand" placeholder (slug `emptybrand`, empty title): the brand id
+# every brandless listing (all books, for one) carries in its breadcrumbs.
+_NO_BRAND_ID = "1"
 
 
 def _size_equivalents(attr_data):
@@ -492,6 +500,9 @@ def item_details(plugins, ld, country, item_id):
 
     brand_data = attrs.get("brand", {})
     brand_id = id_text(brand_data.get("id")) or id_text(plug("breadcrumbs").get("brand_id"))
+    if brand_id == _NO_BRAND_ID:
+        brand_id = None
+    book = {field: attr_value(code) for field, code in _BOOK_CODES.items()}
     brand_name = attr_value("brand") or text((ld.get("brand") or {}).get("name") if isinstance(ld.get("brand"), dict) else None)
     brand_path = text(brand_data.get("url"))
     size_data = attrs.get("size_familiar") or attrs.get("size") or {}
@@ -577,6 +588,7 @@ def item_details(plugins, ld, country, item_id):
         "colors": _split_values(attr_value("color")) or _split_values(text(ld.get("color"))),
         "materials": _split_values(attr_value("material")),
         "other_attributes": other,
+        "book": book if any(book.values()) else None,
         "image": pictures[0]["link"] if pictures else text(ld.get("image")),
         "availability": availability,
         "availability_label": text(status.get("title")),
