@@ -38,3 +38,13 @@ def vinted_proxy():
 def vinted_fallback_proxy():
     """Proxy for a blocked worker (None = no fallback; see above)."""
     return None
+
+
+# ---- added by the sync: defaults for a direct run ----
+def gateway_exit(exit=None):
+    return None
+
+
+def vinted_page_fallback_proxy():
+    return None
+

@@ -7,6 +7,7 @@ import time
 from vinted import countries
 from vinted import parsers as P
 from vinted.fetch import VintedNotFound, api
+from scraper_utils import memo as memo_utils
 
 ID_TTL = 24 * 3600
 TABLE_TTL = 6 * 3600
@@ -16,20 +17,11 @@ _memo = {}
 
 
 def memo(key, ttl, build):
-    now = time.time()
-    with _lock:
-        hit = _memo.get(key)
-        if hit and hit[0] > now:
-            return hit[1]
-    value = build()
-    with _lock:
-        _memo[key] = (now + ttl, value)
-    return value
+    return memo_utils.expiring(_memo, _lock, key, ttl, build)
 
 
 def remember(key, ttl, value):
-    with _lock:
-        _memo[key] = (time.time() + ttl, value)
+    memo_utils.remember(_memo, _lock, key, ttl, value)
 
 
 def recall(key):

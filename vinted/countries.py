@@ -66,6 +66,20 @@ def site(code):
     return "https://" + _TABLE[code][1]
 
 
+def gateway_site(code):
+    """The API-gateway origin of a country site: 'https://api.vinted.fr'.
+
+    2026-10-12: Vinted dropped the transparent `/web/gateway` proxy on the
+    www hosts (every path there is now an empty-body 404 from envoy). The
+    web client's resolveApiGatewayUrl() builds `api.` + the host without
+    `www.`, keeping `www.` only for vinted.com ('api.www.vinted.com');
+    mirrored here. The Locale header still picks market + language."""
+    bare = _TABLE[code][1]
+    if bare.startswith("www.") and code != "us":
+        bare = bare[4:]
+    return "https://api." + bare
+
+
 def currency(code):
     return _TABLE[code][2]
 

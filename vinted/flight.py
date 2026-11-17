@@ -11,7 +11,7 @@ The page content is a set of "plugins" — dicts shaped
 favourite, user_info_header, ...). plugins() returns {name: data} with
 "$<id>" text references already resolved.
 """
-import json
+import fastjson
 import re
 
 _PUSH_RE = re.compile(r'self\.__next_f\.push\(\[1,("(?:[^"\\]|\\.)*")\]\)')
@@ -24,7 +24,7 @@ def flight_rows(html):
     parts = []
     for match in _PUSH_RE.finditer(html or ""):
         try:
-            parts.append(json.loads(match.group(1)))
+            parts.append(fastjson.loads(match.group(1)))
         except ValueError:
             continue
     data = "".join(parts).encode("utf-8", "surrogatepass")
@@ -57,7 +57,7 @@ def flight_rows(html):
         pos = nxt + 1
         if raw[:1] in ("[", "{", '"'):
             try:
-                rows[row_id] = json.loads(raw)
+                rows[row_id] = fastjson.loads(raw)
             except ValueError:
                 pass
     return rows
@@ -112,7 +112,7 @@ def ld_json(html, wanted_type="Product"):
     """The first <script type="application/ld+json"> object of `wanted_type`."""
     for match in re.finditer(r'<script[^>]+type="application/ld\+json"[^>]*>(.*?)</script>', html or "", re.S):
         try:
-            obj = json.loads(match.group(1))
+            obj = fastjson.loads(match.group(1))
         except ValueError:
             continue
         for node in obj if isinstance(obj, list) else [obj]:

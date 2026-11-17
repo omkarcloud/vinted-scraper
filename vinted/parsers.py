@@ -44,39 +44,15 @@ from datetime import datetime, timezone
 from urllib.parse import parse_qs, urlparse
 
 from vinted import countries, refs
+from scraper_utils.values import bool_or_none, num as to_float, to_int
+from scraper_utils.text import stripped as text
 
 _PHOTO_ID_RE = re.compile(r"/t[c]?/([0-9]{2}_[0-9a-f]+_[A-Za-z0-9]+)/")
 _DEFAULT_AVATAR_RE = re.compile(r"/assets/no-photo|default-avatar", re.I)
 
 
 # ---- value helpers ------------------------------------------------------------
-# (kept local so the package stands alone, like the other site packages)
-
-def to_int(value):
-    try:
-        return int(value) if value not in (None, "") and not isinstance(value, bool) else None
-    except (TypeError, ValueError):
-        try:
-            return int(float(value))
-        except (TypeError, ValueError):
-            return None
-
-
-def to_float(value):
-    if value in (None, "") or isinstance(value, bool):
-        return None
-    try:
-        number = float(value)
-    except (TypeError, ValueError):
-        return None
-    return number if number == number else None      # NaN
-
-
-def text(value):
-    if not isinstance(value, str):
-        return None
-    value = value.strip()
-    return value or None
+# (the generic ones come from scraper_utils; the rest are the site's own)
 
 
 def id_text(value):
@@ -88,10 +64,6 @@ def id_text(value):
     if isinstance(value, str) and value.strip():
         return value.strip()
     return None
-
-
-def bool_or_none(value):
-    return value if isinstance(value, bool) else None
 
 
 def iso_datetime(value):

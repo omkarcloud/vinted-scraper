@@ -26,7 +26,10 @@ Three upstream surfaces per country host (vinted/countries.py):
     catalogs and items/<id> routes are gone (404); items/<id>/details is a
     403 block page for an anonymous reader.
 
-  * GATEWAY  https://<host>/web/gateway/...
+  * GATEWAY  https://api.<host without www.>/...   (countries.gateway_site)
+    2026-10-12: was https://<host>/web/gateway/...; Vinted removed that
+    transparent proxy (every path an empty-body 404) and the web client now
+    calls the api. subdomain directly. Same Bearer token, same Locale header.
     svc-catalogue/items (search; hard cap 960 results), svc-filters/filters,
     svc-filters/filters/facets, svc-filters/faceted_categories,
     search-bar/v2/suggestions, item-details/more-items/<id> (similar items;
@@ -38,19 +41,30 @@ Three upstream surfaces per country host (vinted/countries.py):
     attributes, full gallery and breadcrumbs.
 
 Blocks: Cloudflare is in front without a challenge for Chrome TLS. A
-403/429 that is NOT one of Vinted's own JSON errors is a block: the worker
-moves its session to a sticky residential exit
-(config.vinted_fallback_proxy()) for config.VINTED_BLOCK_COOLDOWN seconds —
-the same shape as the kick / soundcloud transports.
+403/429 that is NOT one of Vinted's own JSON errors is a block, kept per
+surface since 2026-11-11 (see _exit_for): for config.VINTED_BLOCK_COOLDOWN
+seconds after one on the server's own IP,
+  * the JSON calls (API, GATEWAY, the token mint) ride the Paris gateway exit
+    (config.vinted_fallback_proxy() = "gateway:fr"; a fresh gateway address per
+    request, the token is not bound to an address), with the residential
+    exit behind it: a call's last retry, and every call for a cooldown once
+    the gateway failed GATEWAY_FAILURES calls in GATEWAY_FAILURE_WINDOW s;
+  * the item PAGE rides a sticky residential exit
+    (config.vinted_page_fallback_proxy()): Cloudflare challenges it from gateway
+    addresses.
+A session follows its tier: when a cooldown ends the thread's next call is
+back on the own IP (before, it kept the residential exit until that failed).
 
 Failure taxonomy (scraper_errors, mapped to HTTP by route_glue):
   VintedUpstreamError  transport failure / 5xx              — retryable
+  VintedRouteMissing   404 WITHOUT Vinted's own not-found body (route moved,
+                       proxy removed) -> 502, not retried
   VintedBlocked        403 / 429 block page, token refused  — retryable on a new exit / token
   VintedBadRequest     upstream 400 / 422                    — never retried
   VintedNotFound       404 / missing entity                  — never retried
 """
 import base64
-import json
+import fastjson
 import os
 import sys
 import threading
@@ -60,12 +74,13 @@ from concurrent.futures import ThreadPoolExecutor
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import config
+import egress
 from scraper_errors import BadRequest, Blocked, NotFound, UpstreamError
 from vinted import countries
+from scraper_utils import debug, fanout
 
 IMPERSONATE = "chrome"
 API = "/api/v2"
-GATEWAY = "/web/gateway"
 TOKEN_COOKIE = "access_token_web"
 # Any path that 404s sets the token cookie on an 18 KB body (the homepage is 2 MB).
 TOKEN_PATHS = ("/page-not-found", "/")
@@ -76,7 +91,6 @@ FANOUT_WORKERS = 12
 
 PAGE_HEADERS = {
     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    "accept-language": "en-US,en;q=0.9",
     "upgrade-insecure-requests": "1",
 }
 
@@ -89,6 +103,14 @@ class VintedBlocked(VintedUpstreamError, Blocked):
     """403 / 429 block page, or the anonymous token was refused — retryable."""
 
 
+class VintedRouteMissing(VintedUpstreamError):
+    """2026-10-12: a 404 that is NOT one of Vinted's own JSON not-found
+    answers (empty body, HTML 404 page, gateway "Route not found."): the
+    upstream route moved, not the entity. Reported as 502 so the next API
+    move is diagnosable instead of looking like "search not found".
+    Not retried — the same URL will 404 again."""
+
+
 class VintedBadRequest(BadRequest):
     """Upstream 400 / 422 — the params were rejected. Never retried."""
 
@@ -98,64 +120,143 @@ class VintedNotFound(NotFound):
 
 
 # ---- sessions ------------------------------------------------------------------
-# One curl session per worker thread. Direct egress by default; after a block
-# the thread's sessions go through a sticky residential exit for a cooldown.
-# Sessions carry no state: auth is the Bearer header, the page locale is an
-# explicit Cookie header, and the cookie jar is emptied after every response.
+# One curl session per worker thread and SURFACE: the JSON calls (API,
+# GATEWAY and the token mint) and the item PAGE each have their own exit.
+# Direct egress by default; after a block on a surface its sessions leave the
+# server's own IP for a cooldown. Sessions carry no state: auth is the Bearer
+# header, the page locale is an explicit Cookie header, and the cookie jar is
+# emptied after every response.
+JSON, PAGE = "json", "page"
+# A session's tier: the configured exit, the surface's fallback exit, or the
+# residential exit that stands in for a gateway exit that keeps failing.
+OWN, FALLBACK, LAST_RESORT = "own", "fallback", "last resort"
+GATEWAY_FAILURES = 3            # this many failed gateway calls ...
+GATEWAY_FAILURE_WINDOW = 60     # ... within this many seconds pause the gateway for a cooldown
+
 _local = threading.local()
-_fallback_until = 0.0
+_fallback_until = {JSON: 0.0, PAGE: 0.0}    # per surface: no new session on the own IP until then
+_gateway_failures = []                      # time.time() of the gateway's latest failed calls
+_gateway_paused_until = 0.0
 _fallback_lock = threading.Lock()
 
 
-def _proxy_for_new_session():
+def _exit_for(surface):
+    """(tier, exit) of a session this thread builds NOW for `surface`.
+
+    JSON: config.vinted_proxy() when set, else the server's own IP, and
+    config.vinted_fallback_proxy() while the surface's block cooldown runs.
+    Where that exit is the gateway exit ("gateway:fr"), a call's last retry and
+    every call while the gateway is paused (_note_failure) ride the
+    residential exit config.vinted_page_fallback_proxy() instead, so a
+    gateway Vinted refuses degrades to the pre-gateway behaviour.
+
+    PAGE: never the gateway. 2026-11-11: Cloudflare answered /items/<id>
+    from gateway addresses with its JS challenge (403, 10.6 KB "Please wait",
+    `cf-mitigated: challenge`) 22 times of 28 on the Paris gateway and 8 of
+    8 on the US and Frankfurt ones — with or without the token cookie, with
+    navigation headers, as an `rsc: 1` request — while the same gateways
+    served every JSON route and the token mint. The page stays on the own IP
+    (or a proxy exit named by config.vinted_proxy()) and moves to the
+    residential exit for the cooldown after a block."""
     forced = config.vinted_proxy()
+    now = time.time()
+    if surface == PAGE:
+        if forced and not config.gateway_exit(forced):
+            return OWN, forced
+        if now < _fallback_until[PAGE]:
+            return FALLBACK, config.vinted_page_fallback_proxy()
+        return OWN, None
     if forced:
-        return forced
-    if time.time() < _fallback_until:
-        return config.vinted_fallback_proxy()
-    return None
+        tier, exit = OWN, forced
+    elif now < _fallback_until[JSON]:
+        tier, exit = FALLBACK, config.vinted_fallback_proxy()
+    else:
+        return OWN, None
+    if config.gateway_exit(exit) and (getattr(_local, "last_retry", False) or now < _gateway_paused_until):
+        last_resort = config.vinted_page_fallback_proxy()
+        if last_resort:
+            return LAST_RESORT, last_resort
+    return tier, exit
 
 
-def _session():
-    sess = getattr(_local, "session", None)
-    if sess is None:
-        from curl_cffi import requests as curl_requests
-        sess = curl_requests.Session(impersonate=IMPERSONATE)
-        proxy = _proxy_for_new_session()
-        if proxy:
-            sess.proxies = {"http": proxy, "https": proxy}
-        _local.session = sess
-    return sess
+def _sessions():
+    held = getattr(_local, "sessions", None)
+    if held is None:
+        held = _local.sessions = {}
+    return held
 
 
-def _drop_session():
-    sess = getattr(_local, "session", None)
-    _local.session = None
-    if sess is not None:
+def _session(surface=JSON):
+    """The thread's session for `surface`, rebuilt when its tier changed.
+    2026-11-11: a session used to live until its next failure, so a thread
+    that took a residential exit during a cooldown stayed on it long after
+    the cooldown had ended."""
+    sessions = _sessions()
+    tier, exit = _exit_for(surface)
+    held = sessions.get(surface)
+    if held is not None and held["tier"] != tier:
+        _drop_session(surface)
+        held = None
+    if held is None:
+        # None (direct), a proxy URL, or "gateway" / "gateway:fr" (an exit_gateway.Session:
+        # the same get / headers / cookies.get / cookies.clear surface)
+        sess = egress.new_session(exit, impersonate=IMPERSONATE)
+        sess.headers["accept-language"] = egress.accept_language(exit)
+        held = sessions[surface] = {"tier": tier, "exit": exit, "session": sess}
+    return held["session"]
+
+
+def _drop_session(surface=JSON):
+    held = _sessions().pop(surface, None)
+    if held is not None:
         try:
-            sess.close()
+            held["session"].close()
         except Exception:
             pass
 
 
-def _note_block():
-    """A block on direct egress: send new sessions through a residential
-    exit for a while (no-op when no fallback country is configured)."""
-    global _fallback_until
-    if config.vinted_fallback_proxy() is not None:
+def _held_exit(surface):
+    """(a session is held, its exit) for the thread's `surface` session."""
+    held = _sessions().get(surface)
+    return (True, held["exit"]) if held else (False, None)
+
+
+def _note_block(surface=JSON):
+    """A 403 / 429 block page on the server's own IP: new sessions of that
+    surface ride its fallback exit for a while (no-op when none is
+    configured). A block on any other exit only costs the call a fresh one
+    (_retrying), and the gateway counts its own failures (_note_failure)."""
+    held, exit = _held_exit(surface)
+    if not held or exit is not None:
+        return
+    fallback = config.vinted_page_fallback_proxy() if surface == PAGE else config.vinted_fallback_proxy()
+    if fallback is not None:
         with _fallback_lock:
-            _fallback_until = time.time() + config.VINTED_BLOCK_COOLDOWN
+            _fallback_until[surface] = time.time() + config.VINTED_BLOCK_COOLDOWN
+
+
+def _note_failure(surface):
+    """A retryable failure of one attempt. On the gateway exit: GATEWAY_FAILURES
+    of them inside GATEWAY_FAILURE_WINDOW seconds (a block page, an 
+    gateway error, a timeout) pause it for the cooldown, and the JSON calls
+    ride the residential exit meanwhile."""
+    global _gateway_paused_until
+    held, exit = _held_exit(surface)
+    if not held or not config.gateway_exit(exit):
+        return
+    now = time.time()
+    with _fallback_lock:
+        _gateway_failures[:] = [t for t in _gateway_failures if now - t < GATEWAY_FAILURE_WINDOW] + [now]
+        if len(_gateway_failures) < GATEWAY_FAILURES or config.vinted_page_fallback_proxy() is None:
+            return
+        del _gateway_failures[:]
+        _gateway_paused_until = now + config.VINTED_BLOCK_COOLDOWN
+    print(f"vinted: the gateway exit failed {GATEWAY_FAILURES} calls in {GATEWAY_FAILURE_WINDOW} s, "
+          f"JSON calls ride the residential exit for {config.VINTED_BLOCK_COOLDOWN} s")
 
 
 def dump_debug(name, text):
-    dbg = os.environ.get("VINTED_DEBUG_DIR", "")
-    if dbg and text:
-        try:
-            os.makedirs(dbg, exist_ok=True)
-            with open(os.path.join(dbg, name + ".txt"), "w", encoding="utf-8") as f:
-                f.write(text)
-        except OSError:
-            pass
+    debug.dump("VINTED_DEBUG_DIR", name, text, encoding="utf-8")
 
 
 # ---- anonymous token -------------------------------------------------------------
@@ -167,14 +268,17 @@ def _jwt_expiry(token):
     try:
         payload = token.split(".")[1]
         payload += "=" * (-len(payload) % 4)
-        return float(json.loads(base64.urlsafe_b64decode(payload)).get("exp") or 0)
+        return float(fastjson.loads(base64.urlsafe_b64decode(payload)).get("exp") or 0)
     except Exception:
         return 0.0
 
 
 def _mint_token(country):
-    """Load a light page of one country site and read the token cookie."""
-    sess = _session()
+    """Load a light page of one country site and read the token cookie. It
+    rides the JSON session: the 404 page is not challenged on the gateway
+    exit (unlike the item page), and the token it sets works from any
+    address."""
+    sess = _session(JSON)
     last = "no token cookie"
     for path in TOKEN_PATHS:
         try:
@@ -188,8 +292,9 @@ def _mint_token(country):
             return token
         if resp.status_code in (403, 429):
             dump_debug("token_blocked", resp.text)
-            _note_block()
-            _drop_session()
+            _note_block(JSON)
+            _note_failure(JSON)     # here, not in _retrying: the session is gone by then
+            _drop_session(JSON)
             raise VintedBlocked(f"HTTP {resp.status_code} while opening a session")
         last = f"HTTP {resp.status_code} without a token cookie"
     raise VintedUpstreamError(f"could not open an anonymous session: {last}")
@@ -244,6 +349,8 @@ def _classify(resp, label):
                {"code": 106, "message_code": "access_denied"}                 403 login-only
       gateway  {"code": "FORBIDDEN"}                                          403 no/invalid token
                {"code": "NOT_FOUND" | "ITEM_NOT_FOUND"}                       404
+               {"code": "NOT_FOUND", "message": "Route not found."}           404 unknown ROUTE
+    A 404 with none of these bodies (empty / HTML) is a missing route too.
                {"code": "INVALID_REQUEST" | "BAD_REQUEST" | ...}              400
     Anything else on 403/429 is a Cloudflare / DataDome block page."""
     status = resp.status_code
@@ -254,13 +361,23 @@ def _classify(resp, label):
     message_code = body.get("message_code") if body else None
     if status == 401 or code == "FORBIDDEN" or message_code == "invalid_authentication_token":
         raise _TokenRefused()
-    if status == 404 or message_code == "not_found" or code in ("NOT_FOUND", "ITEM_NOT_FOUND"):
+    # 2026-10-12: a bare `status == 404` used to mean "entity missing", so
+    # the removal of /web/gateway surfaced as "search not found" / "status
+    # not found" on every gateway route. Only Vinted's own not-found bodies
+    # are a 404 now; any other 404 is a moved/removed route -> 502.
+    message = _error_message(body) or ""
+    route_missing = code == "NOT_FOUND" and "route not found" in message.lower()
+    if not route_missing and (message_code == "not_found" or code in ("NOT_FOUND", "ITEM_NOT_FOUND")):
         raise VintedNotFound(f"{label} not found")
+    if status == 404:
+        dump_debug("route_missing", resp.text)
+        raise VintedRouteMissing(f"HTTP 404 on {label} without a Vinted not-found body "
+                                 f"({resp.url}): upstream route moved")
     if status == 403 and message_code == "access_denied":
         raise VintedBadRequest(f"{label} needs a Vinted login")
     if status in (403, 429):
         dump_debug("blocked", resp.text)
-        _note_block()
+        _note_block(JSON)
         raise VintedBlocked(f"HTTP {status} on {label}")
     if status in (400, 422):
         raise VintedBadRequest(_error_message(body) or f"upstream rejected {label}")
@@ -281,17 +398,29 @@ def _json_of(resp, label):
         raise VintedUpstreamError(f"could not parse JSON from {label}")
 
 
-def _retrying(fn):
+def _retrying(fn, surface=JSON):
+    """fn() up to config.MAX_RETRIES times, each retry on a fresh session of
+    `surface`. The last retry of a JSON call leaves the gateway exit for the
+    residential exit (_exit_for), and the session built for it is replaced
+    on the thread's next call."""
     last = None
-    for attempt in range(1, config.MAX_RETRIES + 1):
-        try:
-            return fn()
-        except VintedUpstreamError as e:      # includes VintedBlocked
-            last = e
-            _drop_session()
-        if attempt < config.MAX_RETRIES:
-            time.sleep(config.RETRY_BACKOFF * attempt)
-    raise last
+    try:
+        for attempt in range(1, config.MAX_RETRIES + 1):
+            _local.last_retry = surface == JSON and 1 < attempt == config.MAX_RETRIES
+            try:
+                return fn()
+            except VintedRouteMissing:
+                raise
+            except VintedUpstreamError as e:      # includes VintedBlocked
+                last = e
+                if not getattr(e, "token_only", False):
+                    _note_failure(surface)
+                _drop_session(surface)
+            if attempt < config.MAX_RETRIES:
+                time.sleep(config.RETRY_BACKOFF * attempt)
+        raise last
+    finally:
+        _local.last_retry = False
 
 
 def _clean_params(params):
@@ -305,11 +434,12 @@ def _clean_params(params):
     return query
 
 
-def get_json(country, path, params=None, *, language=None, label=None):
-    """GET one JSON route of a country site with the anonymous token and
-    the market/language Locale header. A refused token is re-minted once."""
+def get_json(country, path, params=None, *, base=None, language=None, label=None):
+    """GET one JSON route of a country site (`base` defaults to its www
+    origin) with the anonymous token and the market/language Locale header.
+    A refused token is re-minted once."""
     label = label or path
-    url = countries.site(country) + path
+    url = (base or countries.site(country)) + path
     query = _clean_params(params)
     state = {"stale": None}
 
@@ -317,13 +447,13 @@ def get_json(country, path, params=None, *, language=None, label=None):
         bearer = token(country, stale=state["stale"])
         headers = {
             "accept": "application/json, text/plain, */*",
-            "accept-language": "en-US,en;q=0.9",
             "authorization": f"Bearer {bearer}",
             "locale": countries.locale(country, language),
             "platform": "web",
+            "origin": countries.site(country),
             "referer": countries.site(country) + "/",
         }
-        sess = _session()
+        sess = _session(JSON)
         try:
             resp = sess.get(url, params=query, headers=headers, timeout=TIMEOUT, allow_redirects=True)
         except Exception as e:
@@ -334,7 +464,9 @@ def get_json(country, path, params=None, *, language=None, label=None):
             _classify(resp, label)
         except _TokenRefused:
             state["stale"] = bearer
-            raise VintedBlocked(f"anonymous session refused on {label}")
+            refused = VintedBlocked(f"anonymous session refused on {label}")
+            refused.token_only = True       # the exit answered: not a gateway failure (_retrying)
+            raise refused
         return _json_of(resp, label)
 
     return _retrying(once)
@@ -346,8 +478,8 @@ def api(country, path, params=None, **kwargs):
 
 
 def gateway(country, path, params=None, **kwargs):
-    """GET https://<host>/web/gateway<path>."""
-    return get_json(country, GATEWAY + path, params, **kwargs)
+    """GET https://api.<host><path> (2026-10-12: was <host>/web/gateway<path>)."""
+    return get_json(country, path, params, base=countries.gateway_site(country), **kwargs)
 
 
 def get_page(country, path, *, language=None, label=None):
@@ -362,7 +494,7 @@ def get_page(country, path, *, language=None, label=None):
         except VintedUpstreamError:
             pass                      # the page mints its own session
         headers = dict(PAGE_HEADERS, cookie=cookie)
-        sess = _session()
+        sess = _session(PAGE)
         try:
             resp = sess.get(url, headers=headers, timeout=PAGE_TIMEOUT, allow_redirects=True)
         except Exception as e:
@@ -373,13 +505,13 @@ def get_page(country, path, *, language=None, label=None):
             raise VintedNotFound(f"{label} not found")
         if resp.status_code in (403, 429):
             dump_debug("page_blocked", resp.text)
-            _note_block()
+            _note_block(PAGE)
             raise VintedBlocked(f"HTTP {resp.status_code} on {label}")
         if resp.status_code != 200:
             raise VintedUpstreamError(f"HTTP {resp.status_code} on {label}")
         return resp.text or ""
 
-    return _retrying(once)
+    return _retrying(once, PAGE)
 
 
 # ---- fan-out ------------------------------------------------------------------------
@@ -389,34 +521,14 @@ _pool = ThreadPoolExecutor(max_workers=FANOUT_WORKERS, thread_name_prefix="vinte
 
 
 def run_parallel(fns):
-    if not fns:
-        return []
-    if len(fns) == 1:
-        return [fns[0]()]
-    futures = [_pool.submit(fn) for fn in fns]
-    return [f.result() for f in futures]
+    return fanout.on_pool(_pool, fns)
 
 
 def gather(mapping, optional=()):
     """{key: callable} in parallel -> {key: result}. Keys named in
     `optional` yield None instead of failing the set when they raise any
     scraper error (an enrichment must not sink the endpoint)."""
-    keys = list(mapping)
-
-    def guarded(key):
-        fn = mapping[key]
-        if key not in optional:
-            return fn
-
-        def run():
-            try:
-                return fn()
-            except (UpstreamError, BadRequest, NotFound):
-                return None
-        return run
-
-    results = run_parallel([guarded(k) for k in keys])
-    return dict(zip(keys, results))
+    return fanout.gather_optional(run_parallel, mapping, optional, (UpstreamError, BadRequest, NotFound))
 
 
 if __name__ == "__main__":
